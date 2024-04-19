@@ -3,23 +3,42 @@ package pokemon;
 import java.util.Scanner;
 
 public class Rotomu{
-	
+	static Monster Monster = new Monster();
 	public Rotomu(){}
-	
-	static void openRotomu() {
+	static void openRotomu() throws InterruptedException {
 		Scanner sc = new Scanner(System.in);
+		User user = new User();
+		Monster monster = new Monster();
+		MyMonster mymon = new MyMonster();
 		while(true) {
 			System.out.println("로토무 보기 (1:예/2:로토무 종료)");
 			int rspn2 = sc.nextInt();
 			if(rspn2==1) {
 				System.out.println("로토무를 열었습니다! 메뉴를 선택해주세요.");
-				System.out.println("1.조회 2.탐험 3.배틀 4.아르바이트 5.포켓샵");
+				System.out.println("1.조회 2.탐험 3.배틀 4.아르바이트 5.포켓샵 6.로토무 종료");
 				int rspn3 = sc.nextInt();
 				if(rspn3 == 1) {
 					System.out.println("1. 내 정보 조회");
 					System.out.println("2. 내 포켓몬 조회");
 					System.out.println("3. 내 가방 조회");
 					System.out.println("4. 전체 메뉴로 가기");
+					int rspn4 = sc.nextInt();
+					switch(rspn4) {
+						case 1 :
+							user.getAllInfo(); System.out.println("내 정보 조회");
+							break;
+						case 2 :
+							System.out.println("내 포켓몬 조회");
+							mymon.Info();
+							mymon.deepInfo();
+							break;
+						case 3 : 
+							System.out.println("내 가방 조회");
+							break;
+						case 4 :
+							break;
+						default : System.out.println("응답 오류1");
+					}
 				}else if(rspn3 == 2) {
 					System.out.println("1. 서쪽 평야 : 풀타입 포켓몬 출현 확률 UP!");
 					System.out.println("2. 북쪽 용암지대 : 불타입 포켓몬 출현 확률 UP!");
@@ -29,6 +48,16 @@ public class Rotomu{
 					System.out.println("1. AI 트레이너와 훈련");
 					System.out.println("2. 체육관 도전");
 					System.out.println("3. 전체 메뉴로 가기");
+					int rspn4 = sc.nextInt();
+					switch(rspn4) {
+					case 1 :
+						System.out.println("===배틀 시작===");
+						Monster.battle(Monster.gm1, Monster.fm9);
+						break;
+					case 2 :
+						System.out.println("2");
+						break;
+					}
 				}else if(rspn3 == 4) {
 					System.out.println("1. 도서관 : 피로도 -2, 예상 수익 10~15코인");
 					System.out.println("2. 전단지 : 피로도 -4, 예상 수익 15~25코인");
@@ -39,15 +68,15 @@ public class Rotomu{
 					System.out.println("1. 아이템 사기");
 					System.out.println("2. 전당포");
 					System.out.println("3. 전체 메뉴로 가기");
+				}else if(rspn3 == 6) {
+					break;
 				}else {
 					System.out.println("응답 오류");
 				}
 			}
-			if(rspn2 == 2) {
+			if(rspn2 != 1) {
 				System.out.println("로토무 종료");
 				break;
-			}else {
-				System.out.println("응답 오류");
 			}
 		}
 	}
@@ -56,12 +85,12 @@ public class Rotomu{
 		int narration = (int)(Math.random()*10+1);
 		if(narration == 1) {
 			System.out.println("오늘도 신나는 모험을 떠나보자구!");
-		}else if(narration ==2 ) {
-			System.out.println(user.my_name+"네 포켓몬이 할 말이 있나봐.");
+		}else if(narration == 2 ) {
+			System.out.println("네 포켓몬이 할 말이 있나봐.");
 		}else if(narration == 3) {
 			System.out.println("포켓몬 세계는 정말 신비로워");
 		}else if(narration == 4) {
-			System.out.println(user.my_name+"! 탐험을 떠나보는 건 어때? 새로운 포켓몬을 만날지도 몰라!");
+			System.out.println("탐험을 떠나보는 건 어때? 새로운 포켓몬을 만날지도 몰라!");
 		}else  if(narration == 5){
 			System.out.println("포켓몬 마스터가 되기 위하여!");
 		}else  if(narration == 6){

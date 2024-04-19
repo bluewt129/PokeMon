@@ -107,6 +107,9 @@ public class User{
 	public String getMyTitle() {
 		return my_title;
 	}
+	public String getAllInfo() {
+		return "ID:"+id+" 닉네임:"+my_name+" 보유 뱃지:"+my_badge+" 나의 칭호 : "+my_title;
+	}
 	public String toString() {
 		return "ID:"+id+" PW:"+pw+" 회원번호:"+unum+", 닉네임:"+my_name;
 	}

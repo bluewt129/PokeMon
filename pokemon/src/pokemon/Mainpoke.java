@@ -8,19 +8,21 @@ public class Mainpoke {
 	static Login Login = new Login();
 	static Monster Monster = new Monster();
 	static AiBot AiBot = new AiBot();
-
+	
 	public static void main(String[] args) throws InterruptedException {
 		ArrayList<User> users = new ArrayList<>();
-		ArrayList<String> my_mons = new ArrayList<>();
+		ArrayList<Monster> my_mons = new ArrayList<>();
 		
 		Scanner sc = new Scanner(System.in);
 		System.out.println("포켓몬 세계에 오신 것을 환영합니다");
 		Thread.sleep(1000);
+		MyMonster mymonster = new MyMonster();
 		User logined = null;
 		Login login = new Login();
 		
 		while(true) {
 			if(logined == null) {
+				try{
 				System.out.println("계정을 보유하고 계신가요? (1:예/2:아니오) ");
 				int rsp = sc.nextInt();
 				switch(rsp) {
@@ -37,7 +39,15 @@ public class Mainpoke {
 						break;
 					default : System.out.println("입력 오류");
 				}
+				}catch(Exception e) {
+					System.out.println("정상적인 키 입력이 아닙니다");
+					sc.next();
+				}
 			}else {
+				System.out.println("접속 성공");
+				Thread.sleep(1000);
+				System.out.println("====포켓몬 세계에 진입중입니다====");
+				Thread.sleep(1000);
 				System.out.println(logined.getMyName()+"! 반갑네.");
 				Thread.sleep(1000);
 				System.out.println("내 이름은 오박사. 포켓몬 트레이너들의 모험을 도와주고 있지.");
@@ -53,12 +63,12 @@ public class Mainpoke {
 						System.out.println("정말 파이리로 하겠니? (1:예/2:다시 고를래요)");
 						int rspn2 = sc.nextInt();
 						if(rspn2 == 1) {
+							my_mons.add(Monster.fm9);
 							System.out.println("훌륭한 선택이네. 여기, 파이리를 데려가게.");
 							Thread.sleep(1000);
-							System.out.println("파이리 : 파이리~!(주인 반가워~!)");
+							System.out.println(my_mons.get(my_mons.size()-1).howl(my_mons));
 							Thread.sleep(1000);
 							System.out.println("파이리가 모험에 참여했다!");
-							my_mons.add("파이리");
 							break;
 						}else if(rspn2==2){
 							System.out.println("신중하게 선택해보렴.");
@@ -71,10 +81,10 @@ public class Mainpoke {
 						if(rspn2 == 1) {
 							System.out.println("훌륭한 선택이네. 여기, 꼬부기를 데려가게.");
 							Thread.sleep(1000);
-							System.out.println("꼬부기 : 꼬부기~!(반가워요 주인님~!)");
+							System.out.println(my_mons.get(my_mons.size()-1).howl(my_mons));
 							Thread.sleep(1000);
 							System.out.println("꼬부기가 모험에 참여했다!");
-							my_mons.add("꼬부기");
+							my_mons.add(Monster.wm5);
 							break;
 						}else if(rspn2==2){
 							System.out.println("신중하게 선택해보렴.");
@@ -87,29 +97,31 @@ public class Mainpoke {
 						if(rspn2 == 1) {
 							System.out.println("훌륭한 선택이네. 여기, 이상해씨를 데려가게.");
 							Thread.sleep(1000);
-							System.out.println("이상해씨 : 씨...(씨...)");
+							System.out.println(my_mons.get(my_mons.size()-1).howl(my_mons));
 							Thread.sleep(1000);
 							System.out.println("이상해씨가 모험에 참여했다!");
-							my_mons.add("이상해씨");
+							my_mons.add(Monster.gm1);
 							break;
 						}else if(rspn2==2){
 							System.out.println("신중하게 선택해보렴.");
 						}
 					}
 				}
-				Thread.sleep(2000);
+				Thread.sleep(1000);
 				System.out.println("자, 이제 포켓몬을 얻었으니 여기 로토무를 받으렴");
-				Thread.sleep(1500);
+				Thread.sleep(1000);
 				System.out.println("System : 로토무 획득!");
-				Thread.sleep(1500);
+				Thread.sleep(1000);
 				System.out.println("로토무를 통해 메뉴를 선택할 수 있단다. 한번 열어보렴.");
-				Thread.sleep(1500);
+				Thread.sleep(1000);
 				System.out.println("System : 이제부터 로토무를 열 수 있습니다.");
 				while(true) {
 					System.out.println("9:로토무 열기");
 					int rspn2 = sc.nextInt();
 					if(rspn2 == 9) {
 						Rotomu.openRotomu();
+					}else {
+						System.out.println("잘못된 키 입력입니다");
 					}
 					Rotomu.narration();
 				}
